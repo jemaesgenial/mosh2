@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>archcycle</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the latest version of hydra synth-->
+    <script src="https://unpkg.com/hydra-synth"></script>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="1800px" height="850px"></canvas>
+
+    <script>
+      // create a new hydra-synth instance
+      var hydra = new Hydra({
+        canvas: document.getElementById("myCanvas"),
+        detectAudio: true,
+      });
+      //s0.initCam()
+      s0.initVideo(
+        "https://media.giphy.com/media/OM1Q1pUwYUT2qihdLk/giphy.mp4"
+      );
+
+      s1.initVideo(
+        "https://media.giphy.com/media/YfTgKrCf0vY6dtRpxN/giphy.mp4"
+      );
+
+      s2.initVideo(
+        "https://media.giphy.com/media/kiBIhkPXL07mUZJh1l/giphy.mp4"
+      );
+
+      solid()
+        .add(o1, [1, 0, 0].fast(1))
+        .add(o2, [0, 1, 0].fast(1))
+        .add(o3, [0, 0, 1].fast(1))
+        .out(o0);
+
+      src(s0)
+        .scale(1.3)
+        .modulate(noise(1, 0.2), () => mouse.x / 4000)
+        .diff(o0)
+        .brightness(() => a.fft[0] - 0.2)
+        .out(o1);
+
+      src(s2)
+        .scale(1.3)
+        .modulate(o0, () => mouse.x / 9500)
+        .modulateScale(o3, () => mouse.x / 8000)
+        .out(o2);
+
+      src(s1)
+        .scale(1.3)
+        .modulate(noise(1, 0.5), () => mouse.y / 3000)
+        .diff(o0)
+        .brightness(() => a.fft[0] - 0.5)
+        .out(o3);
+    </script>
+
+    <div id="sequence"></div>
+
+    <audio autoplay loop>
+      <source
+        src="https://cdn.glitch.global/5440a2df-af31-4bae-96b3-e202d7be07ac/010.mp3?v=1643576059994"
+        type="audio/mpeg"
+      />
+      Your browser does not support the audio element.
+    </audio>
+
+    <p id="info" align="right">
+      <button onclick="">gEt m0re gl1Tch</button>
+
+
+      
+    </p>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Turret+Road:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </body>
+</html>
