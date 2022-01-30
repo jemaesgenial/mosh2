@@ -23,15 +23,15 @@
       });
       //s0.initCam()
       s0.initVideo(
-        "https://media.giphy.com/media/OM1Q1pUwYUT2qihdLk/giphy.mp4"
+        "https://media.giphy.com/media/0cAyLMB4Ugoo1QMKYs/giphy.mp4"
       );
 
       s1.initVideo(
-        "https://media.giphy.com/media/YfTgKrCf0vY6dtRpxN/giphy.mp4"
+        "https://media.giphy.com/media/lguRjXPU29WfzyWQRY/giphy.mp4"
       );
 
       s2.initVideo(
-        "https://media.giphy.com/media/kiBIhkPXL07mUZJh1l/giphy.mp4"
+        "https://media.giphy.com/media/Hwy2LEBfHknvLHocNk/giphy.mp4"
       );
 
       solid()
@@ -42,7 +42,7 @@
 
       src(s0)
         .scale(1.3)
-        .modulate(noise(1, 0.2), () => mouse.x / 4000)
+        .modulate(pixelate(1, 0.2), () => mouse.x / 4000)
         .diff(o0)
         .brightness(() => a.fft[0] - 0.2)
         .out(o1);
@@ -55,7 +55,7 @@
 
       src(s1)
         .scale(1.3)
-        .modulate(noise(1, 0.5), () => mouse.y / 3000)
+        .modulate(kaleid(1, 0.5), () => mouse.y / 3000)
         .diff(o0)
         .brightness(() => a.fft[0] - 0.5)
         .out(o3);
